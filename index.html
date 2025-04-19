@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizon | Where Startups Reach New Heights</title>
+  <style>
+    :root {
+      --primary: #3a86ff;
+      --secondary: #8338ec;
+      --accent: #ff006e;
+      --light: #ffffff;
+      --dark: #14213d;
+      --gray: #e5e5e5;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, var(--dark), #080f24);
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation */
+    header {
+      padding: 1.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      background: rgba(20, 33, 61, 0.8);
+      backdrop-filter: blur(8px);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      margin-right: 0.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .cta-button {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(58, 134, 255, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(58, 134, 255, 0.1) 0%, rgba(20, 33, 61, 0) 70%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #b0b7c3;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: var(--light);
+      border: 2px solid var(--primary);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .secondary-button:hover {
+      background: rgba(58, 134, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 8rem 0;
+      background: rgba(20, 33, 61, 0.7);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title h2 span {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-title p {
+      color: #b0b7c3;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(58, 134, 255, 0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: #b0b7c3;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 6rem 0;
+      background: linear-gradient(to right, rgba(58, 134, 255, 0.05), rgba(131, 56, 236, 0.05));
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-item p {
+      color: #b0b7c3;
+      font-weight: 500;
+    }
+
+    /* Partners Section */
+    .partners {
+      padding: 6rem 0;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .partner-logo {
+      background: rgba(255, 255, 255, 0.1);
+      width: 150px;
+      height: 80px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .partner-logo:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Application Section */
+    .application {
+      padding: 8rem 0;
+      background: rgba(20, 33, 61, 0.7);
+    }
+
+    .application-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .application-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .application-text {
+      flex: 1;
+    }
+
+    .application-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .application-text h2 span {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .application-text p {
+      color: #b0b7c3;
+      margin-bottom: 2rem;
+    }
+
+    .application-steps {
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--light);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #b0b7c3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      text-align: center;
+      color: #b0b7c3;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Floating Elements */
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .shape1 {
+      top: 20%;
+      left: 10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at center, var(--primary), transparent 70%);
+      animation: float 15s infinite alternate;
+    }
+
+    .shape2 {
+      top: 60%;
+      right: 5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at center, var(--secondary), transparent 70%);
+      animation: float 20s infinite alternate-reverse;
+    }
+
+    .shape3 {
+      bottom: 10%;
+      left: 30%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at center, var(--accent), transparent 70%);
+      animation: float 25s infinite alternate;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(30px, -30px);
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .application-content {
+        flex-direction: column;
+      }
+      
+      h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .application-image {
+        margin-top: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Shapes -->
+  <div class="floating-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon">H</div>
+          Horizon
+        </div>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#stats">Impact</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#application">Apply</a></li>
+        </ul>
+        <button class="cta-button">Get Started</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Building the <span>Future</span> Together</h1>
+        <p>Horizon is where visionary founders transform groundbreaking ideas into world-changing companies. Our accelerator provides the capital, expertise, and network to help startups reach new heights.</p>
+        <div class="hero-buttons">
+          <button class="cta-button">Apply Now</button>
+          <button class="secondary-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose <span>Horizon</span></h2>
+        <p>We provide everything you need to accelerate your startup's growth</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">$</div>
+          <h3>Seed Funding</h3>
+          <p>Up to $500k in funding to kickstart your journey, with flexible terms designed for founder success.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Expert Mentorship</h3>
+          <p>One-on-one guidance from industry veterans who have built and scaled successful companies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>Global Network</h3>
+          <p>Access to our worldwide network of investors, partners, and alumni to fuel your growth.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Growth Resources</h3>
+          <p>Exclusive tools, services, and partnerships worth over $1M to scale your business efficiently.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Market Access</h3>
+          <p>Fast-track introductions to potential customers and partners in your target industry.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏙️</div>
+          <h3>Co-working Space</h3>
+          <p>Modern workspace in tech hubs around the world with all the amenities your team needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Startups Accelerated</p>
+        </div>
+        <div class="stat-item">
+          <h3>$2B+</h3>
+          <p>Follow-on Funding</p>
+        </div>
+        <div class="stat-item">
+          <h3>92%</h3>
+          <p>Survival Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3>38</h3>
+          <p>Countries Represented</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners" id="partners">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our <span>Partners</span></h2>
+        <p>Working with industry leaders to support your startup journey</p>
+      </div>
+      <div class="partners-grid">
+        <div class="partner-logo">Partner 1</div>
+        <div class="partner-logo">Partner 2</div>
+        <div class="partner-logo">Partner 3</div>
+        <div class="partner-logo">Partner 4</div>
+        <div class="partner-logo">Partner 5</div>
+        <div class="partner-logo">Partner 6</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Section -->
+  <section class="application" id="application">
+    <div class="container">
+      <div class="application-content">
+        <div class="application-text">
+          <h2>Join Our <span>Next Cohort</span></h2>
+          <p>Applications are now open for our Spring 2026 program. Our selection process is competitive but straightforward.</p>
+          <div class="application-steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <p>Submit your application with details about your team, product, and vision</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <p>Selected teams will be invited for virtual interviews with our investment team</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <p>Finalists will pitch to our full partner panel for final decisions</p>
+            </div>
+          </div>
+          <button class="cta-button">Apply Now</button>
+        </div>
+        <div class="application-image">
+          <img src="/api/placeholder/500/300" alt="Startup pitch session">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Horizon</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Programs</h3>
+          <ul class="footer-links">
+            <li><a href="#">Accelerator</a></li>
+            <li><a href="#">Seed Fund</a></li>
+            <li><a href="#">Corporate Innovation</a></li>
+            <li><a href="#">Alumni Network</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Startup Guide</a></li>
+            <li><a href="#">Fundraising Toolkit</a></li>
+            <li><a href="#">Growth Playbook</a></li>
+            <li><a href="#">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul class="footer-links">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Subscribe</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Horizon Accelerator. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
